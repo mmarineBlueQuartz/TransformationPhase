@@ -165,12 +165,14 @@ endif()
 
 add_library(${PLUGIN_NAME} MODULE ${${PLUGIN_NAME}_MODULE_SRCS})
 target_link_libraries(${PLUGIN_NAME}
+                    Qt5::Core
+                    Qt5::Gui
+                    Qt5::Widgets
                     DREAM3DLib
                     QtSupport
                     DREAM3DWidgetsLib
                     )
 SET_TARGET_PROPERTIES(${PLUGIN_NAME} PROPERTIES FOLDER ${PLUGIN_NAME}Plugin)
-qt5_use_modules(${PROJECT_NAME} Core Gui Widgets Xml Network)
 
 # --------------------------------------------------------------------
 # Set some additional properties of the plugin like its output name
