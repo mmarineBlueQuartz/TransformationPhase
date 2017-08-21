@@ -45,6 +45,7 @@
 #include <QtCore/QDir>
 
 #include "SIMPLib/Common/Constants.h"
+#include "SIMPLib/Common/EnsembleInfo.h"
 #include "SIMPLib/Math/SIMPLibMath.h"
 #include "SIMPLib/Math/MatrixMath.h"
 #include "SIMPLib/Utilities/SIMPLibRandom.h"
@@ -157,19 +158,8 @@ void InsertTransformationPhases::setupFilterParameters()
     option->setPropertyName("TransCrystalStruct");
     option->setSetterCallback(SIMPL_BIND_SETTER(InsertTransformationPhases, this, TransCrystalStruct));
     option->setGetterCallback(SIMPL_BIND_GETTER(InsertTransformationPhases, this, TransCrystalStruct));
-    QVector<QString> choices;
+    QVector<QString> choices = EnsembleInfo::CrystalStructureStrings().toVector();
     // The choices here are IN ORDER of the enumerations from the EBSDLib. DO NOT CHANGE THE ORDER.
-    choices.push_back("Hexagonal-High 6/mmm");
-    choices.push_back("Cubic-High m-3m");
-    choices.push_back("Hexagonal-Low 6/m");
-    choices.push_back("Cubic-Low m-3 (Tetrahedral)");
-    choices.push_back("Triclinic -1");
-    choices.push_back("Monoclinic 2/m");
-    choices.push_back("Orthorhombic mmm");
-    choices.push_back("Tetragonal-Low 4/m");
-    choices.push_back("Tetragonal-High 4/mmm");
-    choices.push_back("Trigonal-Low -3");
-    choices.push_back("Trigonal-High -3m");
     option->setCategory(FilterParameter::Parameter);
     option->setChoices(choices);
     parameters.push_back(option);
